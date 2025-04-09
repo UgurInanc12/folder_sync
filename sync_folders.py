@@ -119,6 +119,14 @@ def main():
     parser.add_argument('--interval', type=int, required=True, help='Synchronization interval in seconds')
     parser.add_argument('--log', type=str, required=True, help='Path to the log file')
     args = parser.parse_args()
+    
+    # Create source and replica folders if they do not exist
+    if not os.path.exists(args.source):
+        os.makedirs(args.source)
+        print(f"Created source folder: {args.source}")
+    if not os.path.exists(args.replica):
+        os.makedirs(args.replica)
+        print(f"Created replica folder: {args.replica}")
 
     # Setup logging with the given log file
     setup_logging(args.log)
